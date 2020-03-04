@@ -25,10 +25,9 @@ CREATE TABLE IF NOT EXISTS `wdc`.`rolePrivileges` (
   `disabled` INT ZEROFILL NULL ,
   `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
   `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`privilegeId`)
+  PRIMARY KEY (`privilegeId`),
   FOREIGN KEY (`roleId`)
   REFERENCES `wdc`.`role` (`roleId`)
-	ON DELETE CASCADE
 	ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
@@ -44,10 +43,10 @@ CREATE TABLE IF NOT EXISTS `wdc`.`user` (
   `loginPassword` VARCHAR(45) NOT NULL ,
   `roleId` INT NOT NULL ,
   `disabled` INT ZEROFILL NULL ,
-  PRIMARY KEY (`userId`)
+  PRIMARY KEY (`userId`),
   FOREIGN KEY (`roleId`)
   REFERENCES `wdc`.`role` (`roleId`)
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
@@ -59,15 +58,15 @@ CREATE TABLE IF NOT EXISTS `wdc`.`collection` (
   `collectionId` INT NOT NULL AUTO_INCREMENT ,
   `collectionName` VARCHAR(45) NOT NULL ,
   `collectionLocation` VARCHAR(45) NOT NULL ,
-  `noOfUnits` VARCHAR(45) ZEROFILL NULL ,
+  `noOfUnits` INT ZEROFILL NULL ,
   `userId` INT NOT NULL ,
   `disabled` INT ZEROFILL NULL ,
   `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
   `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`collection_id`) ,
+  PRIMARY KEY (`collectionId`) ,
   FOREIGN KEY (`userId`)
   REFERENCES `wdc`.`user` (`userId`)
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
@@ -79,15 +78,15 @@ CREATE TABLE IF NOT EXISTS `wdc`.`unit` (
   `unitId` INT NOT NULL AUTO_INCREMENT ,
   `unitName` VARCHAR(45) NULL ,
   `unitLocation` VARCHAR(45) NOT NULL ,
-  `noOfParentNodes` VARCHAR(45) NULL ,
+  `noOfParentNodes` INT ZEROFILL NULL ,
   `collectionId` INT NOT NULL ,
   `disabled` INT ZEROFILL NULL ,
   `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
   `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`unitId`) 
+  PRIMARY KEY (`unitId`) ,
   FOREIGN KEY (`collectionId`)
   REFERENCES `wdc`.`collection` (`collectionId`)
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
@@ -99,21 +98,21 @@ CREATE TABLE IF NOT EXISTS `wdc`.`parentNode` (
   `parentNodeId` INT NOT NULL AUTO_INCREMENT ,
   `parentNodeName` VARCHAR(45) NULL ,
   `parentNodeLocation` VARCHAR(45) NOT NULL ,
-  `noOfNodes` VARCHAR(45) NOT NULL ,
+  `noOfNodes` INT ZEROFILL NOT NULL ,
   `unitId` INT NOT NULL ,
   `collectionId` INT NOT NULL ,
   `disabled` INT ZEROFILL NULL ,
   `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
   `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`parentNodeId`) 
+  PRIMARY KEY (`parentNodeId`) ,
   FOREIGN KEY (`unitId`)
   REFERENCES `wdc`.`unit` (`unitId`)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE,
   FOREIGN KEY (`collectionId`)
   REFERENCES `wdc`.`collection` (`collectionId`)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE))
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
 
@@ -126,11 +125,11 @@ CREATE TABLE IF NOT EXISTS `wdc`.`node` (
   `disabled` INT ZEROFILL NULL ,
   `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
   `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`nodeId`)
+  PRIMARY KEY (`nodeId`),
   FOREIGN KEY (`parentNodeId`)
   REFERENCES `wdc`.`parentNode` (`parentNodeId`)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE))
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
 
@@ -147,10 +146,10 @@ CREATE  TABLE `wdc`.`data` (
   `validated` INT NULL ,
   `disabled` INT ZEROFILL NULL ,
   `savedDateTime` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`collection_id`) 
+  PRIMARY KEY (`dataId`) ,
   FOREIGN KEY (`nodeId`)
   REFERENCES `wdc`.`node` (`nodeId`)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE))
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
