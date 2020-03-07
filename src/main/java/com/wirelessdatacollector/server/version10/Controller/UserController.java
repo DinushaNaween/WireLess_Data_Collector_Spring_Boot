@@ -1,6 +1,5 @@
 package com.wirelessdatacollector.server.version10.Controller;
 
-import com.wirelessdatacollector.server.version10.entity.Role;
 import com.wirelessdatacollector.server.version10.entity.User;
 import com.wirelessdatacollector.server.version10.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
