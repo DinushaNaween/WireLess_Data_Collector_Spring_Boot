@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "parentnode", schema = "wdc", catalog = "")
-public class ParentnodeEntity {
+public class ParentNode {
     private int parentNodeId;
     private String parentNodeName;
     private String parentNodeLocation;
@@ -15,7 +15,7 @@ public class ParentnodeEntity {
     private Timestamp lastModifiedDateTime;
 
     @Id
-    @Column(name = "parentNodeId")
+    @Column(name = "parentnodeid")
     public int getParentNodeId() {
         return parentNodeId;
     }
@@ -25,7 +25,7 @@ public class ParentnodeEntity {
     }
 
     @Basic
-    @Column(name = "parentNodeName")
+    @Column(name = "parentnodename")
     public String getParentNodeName() {
         return parentNodeName;
     }
@@ -35,7 +35,7 @@ public class ParentnodeEntity {
     }
 
     @Basic
-    @Column(name = "parentNodeLocation")
+    @Column(name = "parentnodelocation")
     public String getParentNodeLocation() {
         return parentNodeLocation;
     }
@@ -45,7 +45,7 @@ public class ParentnodeEntity {
     }
 
     @Basic
-    @Column(name = "noOfNodes")
+    @Column(name = "noofnodes")
     public int getNoOfNodes() {
         return noOfNodes;
     }
@@ -65,7 +65,7 @@ public class ParentnodeEntity {
     }
 
     @Basic
-    @Column(name = "LastModifiedUser")
+    @Column(name = "lastmodifieduser")
     public String getLastModifiedUser() {
         return lastModifiedUser;
     }
@@ -75,7 +75,7 @@ public class ParentnodeEntity {
     }
 
     @Basic
-    @Column(name = "LastModifiedDateTime")
+    @Column(name = "lastmodifieddatetime")
     public Timestamp getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
@@ -89,7 +89,7 @@ public class ParentnodeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ParentnodeEntity that = (ParentnodeEntity) o;
+        ParentNode that = (ParentNode) o;
 
         if (parentNodeId != that.parentNodeId) return false;
         if (noOfNodes != that.noOfNodes) return false;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user", schema = "wdc", catalog = "")
-public class UserEntity {
+public class User {
     private int userId;
     private String email;
     private String userName;
@@ -14,7 +14,8 @@ public class UserEntity {
     private Integer disabled;
 
     @Id
-    @Column(name = "userId")
+    @Column(name = "userid")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     public int getUserId() {
         return userId;
     }
@@ -30,7 +31,7 @@ public class UserEntity {
     public void setEmail(String email) { this.email = email; }
 
     @Basic
-    @Column(name = "userName")
+    @Column(name = "username")
     public String getUserName() {
         return userName;
     }
@@ -40,7 +41,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "firstName")
+    @Column(name = "firstname")
     public String getFirstName() {
         return firstName;
     }
@@ -50,7 +51,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "lastName")
+    @Column(name = "lastname")
     public String getLastName() {
         return lastName;
     }
@@ -60,7 +61,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "loginPassword")
+    @Column(name = "loginpassword")
     public String getLoginPassword() {
         return loginPassword;
     }
@@ -84,7 +85,7 @@ public class UserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserEntity that = (UserEntity) o;
+        User that = (User) o;
 
         if (userId != that.userId) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;

@@ -5,14 +5,14 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "node", schema = "wdc", catalog = "")
-public class NodeEntity {
+public class Node {
     private int nodeId;
     private Integer disabled;
     private String lastModifiedUser;
     private Timestamp lastModifiedDateTime;
 
     @Id
-    @Column(name = "nodeId")
+    @Column(name = "nodeid")
     public int getNodeId() {
         return nodeId;
     }
@@ -32,7 +32,7 @@ public class NodeEntity {
     }
 
     @Basic
-    @Column(name = "LastModifiedUser")
+    @Column(name = "lastmodifieduser")
     public String getLastModifiedUser() {
         return lastModifiedUser;
     }
@@ -42,7 +42,7 @@ public class NodeEntity {
     }
 
     @Basic
-    @Column(name = "LastModifiedDateTime")
+    @Column(name = "lastmodifieddatetime")
     public Timestamp getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
@@ -56,7 +56,7 @@ public class NodeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        NodeEntity that = (NodeEntity) o;
+        Node that = (Node) o;
 
         if (nodeId != that.nodeId) return false;
         if (disabled != null ? !disabled.equals(that.disabled) : that.disabled != null) return false;

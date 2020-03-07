@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "rolePrivileges", schema = "wdc", catalog = "")
-public class RolePrivileges {
+public class RolePrivilege {
     private int privilegeId;
     private String privilegeDescription;
     private Integer disabled;
@@ -13,7 +13,7 @@ public class RolePrivileges {
     private Timestamp lastModifiedDateTime;
 
     @Id
-    @Column(name = "privilegeId")
+    @Column(name = "privilegeid")
     public int getPrivilegeId() {
         return privilegeId;
     }
@@ -23,7 +23,7 @@ public class RolePrivileges {
     }
 
     @Basic
-    @Column(name = "privilegeDescription")
+    @Column(name = "privilegedescription")
     public String getPrivilegeDescription() {
         return privilegeDescription;
     }
@@ -43,7 +43,7 @@ public class RolePrivileges {
     }
 
     @Basic
-    @Column(name = "LastModifiedUser")
+    @Column(name = "lastmodifieduser")
     public String getLastModifiedUser() {
         return lastModifiedUser;
     }
@@ -53,7 +53,7 @@ public class RolePrivileges {
     }
 
     @Basic
-    @Column(name = "LastModifiedDateTime")
+    @Column(name = "lastmodifieddatetime")
     public Timestamp getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
@@ -67,7 +67,7 @@ public class RolePrivileges {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RolePrivileges that = (RolePrivileges) o;
+        RolePrivilege that = (RolePrivilege) o;
 
         if (privilegeId != that.privilegeId) return false;
         if (privilegeDescription != null ? !privilegeDescription.equals(that.privilegeDescription) : that.privilegeDescription != null)

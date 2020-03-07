@@ -1,4 +1,4 @@
-package com.wirelessdatacollector.server.version10.DaoServices;
+package com.wirelessdatacollector.server.version10.Controller;
 
-public class UserDaoService {
+public class UserController {
 }

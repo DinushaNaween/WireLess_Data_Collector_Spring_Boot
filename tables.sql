@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `wdc`.`rolePrivileges` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wdc`.`user` (
   `userId` INT NOT NULL AUTO_INCREMENT ,
+  `email` VARCHAR(45) NOT NULL ,
   `userName` VARCHAR(45) NOT NULL ,
   `firstName` VARCHAR(45) NOT NULL ,
   `lastName` VARCHAR(45) NOT NULL ,

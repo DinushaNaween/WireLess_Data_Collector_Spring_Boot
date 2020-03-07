@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "unit", schema = "wdc", catalog = "")
-public class UnitEntity {
+public class Unit {
     private int unitId;
     private String unitName;
     private String unitLocation;
@@ -15,7 +15,7 @@ public class UnitEntity {
     private Timestamp lastModifiedDateTime;
 
     @Id
-    @Column(name = "unitId")
+    @Column(name = "unitid")
     public int getUnitId() {
         return unitId;
     }
@@ -25,7 +25,7 @@ public class UnitEntity {
     }
 
     @Basic
-    @Column(name = "unitName")
+    @Column(name = "unitname")
     public String getUnitName() {
         return unitName;
     }
@@ -35,7 +35,7 @@ public class UnitEntity {
     }
 
     @Basic
-    @Column(name = "unitLocation")
+    @Column(name = "unitlocation")
     public String getUnitLocation() {
         return unitLocation;
     }
@@ -45,7 +45,7 @@ public class UnitEntity {
     }
 
     @Basic
-    @Column(name = "noOfParentNodes")
+    @Column(name = "noofparentnodes")
     public Integer getNoOfParentNodes() {
         return noOfParentNodes;
     }
@@ -65,7 +65,7 @@ public class UnitEntity {
     }
 
     @Basic
-    @Column(name = "LastModifiedUser")
+    @Column(name = "lastmodifieduser")
     public String getLastModifiedUser() {
         return lastModifiedUser;
     }
@@ -75,7 +75,7 @@ public class UnitEntity {
     }
 
     @Basic
-    @Column(name = "LastModifiedDateTime")
+    @Column(name = "lastmodifieddatetime")
     public Timestamp getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
@@ -89,7 +89,7 @@ public class UnitEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UnitEntity that = (UnitEntity) o;
+        Unit that = (Unit) o;
 
         if (unitId != that.unitId) return false;
         if (unitName != null ? !unitName.equals(that.unitName) : that.unitName != null) return false;

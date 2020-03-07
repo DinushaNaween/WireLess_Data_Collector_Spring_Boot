@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "collection", schema = "wdc", catalog = "")
-public class CollectionEntity {
+public class Collection {
     private int collectionId;
     private String collectionName;
     private String collectionLocation;
@@ -15,7 +15,7 @@ public class CollectionEntity {
     private Timestamp lastModifiedDateTime;
 
     @Id
-    @Column(name = "collectionId")
+    @Column(name = "collectionid")
     public int getCollectionId() {
         return collectionId;
     }
@@ -25,7 +25,7 @@ public class CollectionEntity {
     }
 
     @Basic
-    @Column(name = "collectionName")
+    @Column(name = "collectionname")
     public String getCollectionName() {
         return collectionName;
     }
@@ -35,7 +35,7 @@ public class CollectionEntity {
     }
 
     @Basic
-    @Column(name = "collectionLocation")
+    @Column(name = "collectionlocation")
     public String getCollectionLocation() {
         return collectionLocation;
     }
@@ -45,7 +45,7 @@ public class CollectionEntity {
     }
 
     @Basic
-    @Column(name = "noOfUnits")
+    @Column(name = "noofunits")
     public Integer getNoOfUnits() {
         return noOfUnits;
     }
@@ -65,7 +65,7 @@ public class CollectionEntity {
     }
 
     @Basic
-    @Column(name = "LastModifiedUser")
+    @Column(name = "lastmodifieduser")
     public String getLastModifiedUser() {
         return lastModifiedUser;
     }
@@ -75,7 +75,7 @@ public class CollectionEntity {
     }
 
     @Basic
-    @Column(name = "LastModifiedDateTime")
+    @Column(name = "lastmodifieddatetime")
     public Timestamp getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
@@ -89,7 +89,7 @@ public class CollectionEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CollectionEntity that = (CollectionEntity) o;
+        Collection that = (Collection) o;
 
         if (collectionId != that.collectionId) return false;
         if (collectionName != null ? !collectionName.equals(that.collectionName) : that.collectionName != null)

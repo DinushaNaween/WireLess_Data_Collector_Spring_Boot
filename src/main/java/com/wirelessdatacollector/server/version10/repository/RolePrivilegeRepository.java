@@ -1,7 +1,9 @@
 package com.wirelessdatacollector.server.version10.repository;
 
-import com.wirelessdatacollector.server.version10.entity.RolePrivileges;
+import com.wirelessdatacollector.server.version10.entity.RolePrivilege;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface RolePrivilegesRepository extends CrudRepository<RolePrivileges, Integer> {
+@Repository
+public interface RolePrivilegeRepository extends CrudRepository<RolePrivilege, Integer> {
 }

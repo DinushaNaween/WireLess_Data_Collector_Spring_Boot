@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "data", schema = "wdc", catalog = "")
-public class DataEntity {
+public class Data {
     private int dataId;
     private String data1;
     private String data2;
@@ -16,7 +16,7 @@ public class DataEntity {
     private Timestamp savedDateTime;
 
     @Id
-    @Column(name = "dataId")
+    @Column(name = "dataid")
     public int getDataId() {
         return dataId;
     }
@@ -86,7 +86,7 @@ public class DataEntity {
     }
 
     @Basic
-    @Column(name = "savedDateTime")
+    @Column(name = "saveddatetime")
     public Timestamp getSavedDateTime() {
         return savedDateTime;
     }
@@ -100,7 +100,7 @@ public class DataEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DataEntity that = (DataEntity) o;
+        Data that = (Data) o;
 
         if (dataId != that.dataId) return false;
         if (data1 != null ? !data1.equals(that.data1) : that.data1 != null) return false;
