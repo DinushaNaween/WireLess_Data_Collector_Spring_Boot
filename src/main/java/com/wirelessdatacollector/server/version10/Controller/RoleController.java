@@ -43,7 +43,7 @@ public class RoleController {
     // ---------------------------------
     @GetMapping(path = "/")
     public @ResponseBody Iterable<Role> getAllRoles(){
-        System.out.println("get request");
+
         return roleService.getAllRoles();
     }
 
@@ -52,6 +52,7 @@ public class RoleController {
     // ---------------------------------
     @GetMapping(path = "/{roleId}")
     public @ResponseBody Optional<Role> getRoleById(@PathVariable Integer roleId){
+
         return roleService.getRoleById(roleId);
     }
 

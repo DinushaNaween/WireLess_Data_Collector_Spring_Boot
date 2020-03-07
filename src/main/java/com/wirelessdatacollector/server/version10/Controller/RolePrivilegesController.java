@@ -5,10 +5,9 @@ import com.wirelessdatacollector.server.version10.entity.RolePrivilege;
 import com.wirelessdatacollector.server.version10.service.RolePrivilegesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/roleprivilege")
@@ -38,5 +37,33 @@ public class RolePrivilegesController {
             privilegeId = rolePrivilege.getPrivilegeId();
         }
         return rolePrivilegesService.updateRolePrivilege(privilegeId, rolePrivilege);
+    }
+
+    // ---------------------------------
+    // get all role privileges
+    // ---------------------------------
+    @GetMapping(path = "/")
+    public @ResponseBody Iterable<RolePrivilege> getAllRolePrivileges(){
+
+        return rolePrivilegesService.getAllPrivileges();
+    }
+
+    // ---------------------------------
+    // get role privilege by id
+    // ---------------------------------
+    @GetMapping(path = "/{privilegeId}")
+    public @ResponseBody
+    Optional<RolePrivilege> getRolePrivilegeById(@PathVariable Integer privilegeId){
+
+        return rolePrivilegesService.getPrivilegeById(privilegeId);
+    }
+
+    // ---------------------------------
+    // delete role privilege
+    // ---------------------------------
+    @DeleteMapping(path = "/delete/{privilegeId}")
+    public @ResponseBody String deleteRolePrivilege(@PathVariable Integer privilegeId){
+
+        return rolePrivilegesService.deletePrivilege(privilegeId);
     }
 }

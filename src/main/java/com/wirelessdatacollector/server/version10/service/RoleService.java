@@ -47,7 +47,7 @@ public class RoleService {
     // get all roles
     // ---------------------------------
     public Iterable<Role> getAllRoles(){
-        System.out.println("get all roles");
+
         return roleRepository.findAll();
     }
 
@@ -55,6 +55,7 @@ public class RoleService {
     // get role by id
     // ---------------------------------
     public Optional<Role> getRoleById(Integer roleId){
+
         return roleRepository.findById(roleId);
     }
 
