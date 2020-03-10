@@ -10,6 +10,7 @@ public class Unit {
     private String unitName;
     private String unitLocation;
     private Integer noOfParentNodes;
+    private Integer collectionId;
     private Integer disabled;
     private String lastModifiedUser;
     private Timestamp lastModifiedDateTime;
@@ -84,6 +85,10 @@ public class Unit {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "collectionId")
+    private Collection collection;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,5 +120,16 @@ public class Unit {
         result = 31 * result + (lastModifiedUser != null ? lastModifiedUser.hashCode() : 0);
         result = 31 * result + (lastModifiedDateTime != null ? lastModifiedDateTime.hashCode() : 0);
         return result;
+    }
+
+    public Unit(String unitName, String unitLocation, Integer noOfParentNodes, Integer collectionId, Integer disabled, String lastModifiedUser, Timestamp lastModifiedDateTime, Collection collection) {
+        this.unitName = unitName;
+        this.unitLocation = unitLocation;
+        this.noOfParentNodes = noOfParentNodes;
+        this.collectionId = collectionId;
+        this.disabled = disabled;
+        this.lastModifiedUser = lastModifiedUser;
+        this.lastModifiedDateTime = lastModifiedDateTime;
+        this.collection = collection;
     }
 }
