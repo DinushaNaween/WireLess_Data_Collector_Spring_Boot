@@ -2,6 +2,8 @@ package com.wirelessdatacollector.server.version10.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "collection", schema = "wdc", catalog = "")
@@ -83,6 +85,9 @@ public class Collection {
     public void setLastModifiedDateTime(Timestamp lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
+
+    @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL)
+    Set unit = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
