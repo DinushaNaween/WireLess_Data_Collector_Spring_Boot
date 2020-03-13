@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "rolePrivileges", schema = "wdc", catalog = "")
+@Table(name = "roleprivileges", schema = "wdc", catalog = "")
 public class RolePrivilege {
     private int privilegeId;
     private String privilegeDescription;
