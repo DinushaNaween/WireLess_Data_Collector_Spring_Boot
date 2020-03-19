@@ -1,10 +1,15 @@
 package com.wirelessdatacollector.server.version10.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "role", schema = "wdc", catalog = "")
-public class Role {
+public class Role implements Serializable {
     private int roleId;
     private String roleName;
     private Integer disabled;
@@ -39,6 +44,9 @@ public class Role {
     public void setDisabled(Integer disabled) {
         this.disabled = disabled;
     }
+
+    @OneToMany(mappedBy = "roleId", cascade = CascadeType.ALL)
+    private List<RolePrivilege> rolePrivileges;
 
     @Override
     public boolean equals(Object o) {

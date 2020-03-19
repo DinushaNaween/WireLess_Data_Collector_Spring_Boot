@@ -5,6 +5,8 @@ import com.wirelessdatacollector.server.version10.repository.RolePrivilegeReposi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.management.Query;
+import javax.persistence.EntityManager;
 import java.util.Optional;
 
 @Service
@@ -12,6 +14,8 @@ public class RolePrivilegesService {
 
     @Autowired
     private RolePrivilegeRepository rolePrivilegesRepository;
+
+//    private EntityManager entityManager;
 
     // ---------------------------------
     // add new role privilege
@@ -62,4 +66,15 @@ public class RolePrivilegesService {
             return "Failed to delete";
         }
     }
+
+    // ---------------------------------
+    // get all privileges of a role
+    // ---------------------------------
+//    public RolePrivilege getAllPrivilegesOfARole(Integer roleId){
+//        try {
+//
+//
+//            Query query = new
+//        }
+//    }
 }

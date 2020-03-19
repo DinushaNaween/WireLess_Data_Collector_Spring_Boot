@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.Inet4Address;
 import java.util.Optional;
 
 @Controller
@@ -66,4 +67,12 @@ public class RolePrivilegesController {
 
         return rolePrivilegesService.deletePrivilege(privilegeId);
     }
+
+    // ---------------------------------
+    // get all privileges of a role
+    // ---------------------------------
+//    @GetMapping(path = "/getAll/{roleId}")
+//    public @ResponseBody RolePrivilege getAllPrivilegesOfARole(@PathVariable Integer roleId){
+//        RolePrivilege privileges = rolePrivilegesService
+//    }
 }

@@ -8,7 +8,7 @@ USE `wdc`;
 -- Table `wdc`.`role`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wdc`.`role` (
-  `roleId` INT NOT NULL AUTO_INCREMENT ,
+  `roleId` LONG NOT NULL AUTO_INCREMENT ,
   `roleName` VARCHAR(45) NOT NULL ,
   `disabled` INT(1) ZEROFILL NULL ,
   PRIMARY KEY (`roleId`))
@@ -19,12 +19,12 @@ CREATE TABLE IF NOT EXISTS `wdc`.`role` (
 -- Table `wdc`.`rolePrivileges`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wdc`.`rolePrivileges` (
-  `privilegeId` INT NOT NULL AUTO_INCREMENT ,
+  `privilegeId` LONG NOT NULL AUTO_INCREMENT ,
   `privilegeDescription` VARCHAR(45) NOT NULL ,
-  `roleId` INT NULL ,
+  `roleId` LONG NULL ,
   `disabled` INT(1) ZEROFILL NULL ,
-  `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
-  `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
+  `lastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
+  `lastModifiedDateTime` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`privilegeId`),
   FOREIGN KEY (`roleId`)
   REFERENCES `wdc`.`role` (`roleId`)
@@ -36,13 +36,13 @@ CREATE TABLE IF NOT EXISTS `wdc`.`rolePrivileges` (
 -- Table `wdc`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wdc`.`user` (
-  `userId` INT NOT NULL AUTO_INCREMENT ,
+  `userId` LONG NOT NULL AUTO_INCREMENT ,
   `email` VARCHAR(45) NOT NULL ,
   `userName` VARCHAR(45) NOT NULL ,
   `firstName` VARCHAR(45) NOT NULL ,
   `lastName` VARCHAR(45) NOT NULL ,
   `loginPassword` VARCHAR(45) NOT NULL ,
-  `roleId` INT NOT NULL ,
+  `roleId` LONG NOT NULL ,
   `disabled` INT(1) ZEROFILL NULL ,
   PRIMARY KEY (`userId`),
   FOREIGN KEY (`roleId`)
@@ -56,14 +56,14 @@ CREATE TABLE IF NOT EXISTS `wdc`.`user` (
 -- Table `wdc`.`collection`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wdc`.`collection` (
-  `collectionId` INT NOT NULL AUTO_INCREMENT ,
+  `collectionId` LONG NOT NULL AUTO_INCREMENT ,
   `collectionName` VARCHAR(45) NOT NULL ,
   `collectionLocation` VARCHAR(45) NOT NULL ,
   `noOfUnits` INT ZEROFILL NULL ,
-  `userId` INT NOT NULL ,
+  `userId` LONG NOT NULL ,
   `disabled` INT(1) ZEROFILL NULL ,
-  `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
-  `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
+  `lastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
+  `lastModifiedDateTime` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`collectionId`) ,
   FOREIGN KEY (`userId`)
   REFERENCES `wdc`.`user` (`userId`)
@@ -76,14 +76,14 @@ CREATE TABLE IF NOT EXISTS `wdc`.`collection` (
 -- Table `wdc`.`unit`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wdc`.`unit` (
-  `unitId` INT NOT NULL AUTO_INCREMENT ,
+  `unitId` LONG NOT NULL AUTO_INCREMENT ,
   `unitName` VARCHAR(45) NULL ,
   `unitLocation` VARCHAR(45) NOT NULL ,
   `noOfParentNodes` INT ZEROFILL NULL ,
-  `collectionId` INT NOT NULL ,
+  `collectionId` LONG NOT NULL ,
   `disabled` INT(1) ZEROFILL NULL ,
-  `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
-  `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
+  `lastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
+  `lastModifiedDateTime` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`unitId`) ,
   FOREIGN KEY (`collectionId`)
   REFERENCES `wdc`.`collection` (`collectionId`)
@@ -96,15 +96,15 @@ CREATE TABLE IF NOT EXISTS `wdc`.`unit` (
 -- Table `wdc`.`parentNode`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wdc`.`parentNode` (
-  `parentNodeId` INT NOT NULL AUTO_INCREMENT ,
+  `parentNodeId` LONG NOT NULL AUTO_INCREMENT ,
   `parentNodeName` VARCHAR(45) NULL ,
   `parentNodeLocation` VARCHAR(45) NOT NULL ,
   `noOfNodes` INT ZEROFILL NOT NULL ,
-  `unitId` INT NOT NULL ,
-  `collectionId` INT NOT NULL ,
+  `unitId` LONG NOT NULL ,
+  `collectionId` LONG NOT NULL ,
   `disabled` INT(1) ZEROFILL NULL ,
-  `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
-  `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
+  `lastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
+  `lastModifiedDateTime` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`parentNodeId`) ,
   FOREIGN KEY (`unitId`)
   REFERENCES `wdc`.`unit` (`unitId`)
@@ -121,11 +121,11 @@ CREATE TABLE IF NOT EXISTS `wdc`.`parentNode` (
 -- Table `wdc`.`node`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wdc`.`node` (
-  `nodeId` INT NOT NULL AUTO_INCREMENT ,
+  `nodeId` LONG NOT NULL AUTO_INCREMENT ,
   `parentNodeId` INT NOT NULL ,
-  `disabled`(1) INT ZEROFILL NULL ,
-  `LastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
-  `LastModifiedDateTime` DATETIME NULL DEFAULT NULL,
+  `disabled` INT(1) ZEROFILL NULL ,
+  `lastModifiedUser` VARCHAR(30) NULL DEFAULT NULL,
+  `lastModifiedDateTime` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`nodeId`),
   FOREIGN KEY (`parentNodeId`)
   REFERENCES `wdc`.`parentNode` (`parentNodeId`)
@@ -137,14 +137,14 @@ CREATE TABLE IF NOT EXISTS `wdc`.`node` (
 -- -----------------------------------------------------
 -- Table `wdc`.`data`
 -- -----------------------------------------------------
-CREATE  TABLE `wdc`.`data` (
-  `dataId` INT NOT NULL AUTO_INCREMENT ,
+CREATE TABLE IF NOT EXISTS `wdc`.`data` (
+  `dataId` LONG NOT NULL AUTO_INCREMENT ,
   `data1` VARCHAR(45) NULL ,
   `data2` VARCHAR(45) NULL ,
   `data3` VARCHAR(45) NULL ,
   `data4` VARCHAR(45) NULL ,
-  `nodeId` INT NOT NULL ,
-  `validated` INT NULL ,
+  `nodeId` LONG NOT NULL ,
+  `validated` INT(1) ZEROFILL NULL ,
   `disabled` INT(1) ZEROFILL NULL ,
   `savedDateTime` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`dataId`) ,

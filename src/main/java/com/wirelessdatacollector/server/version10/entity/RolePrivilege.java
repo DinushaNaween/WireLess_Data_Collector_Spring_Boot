@@ -1,11 +1,12 @@
 package com.wirelessdatacollector.server.version10.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "roleprivileges", schema = "wdc", catalog = "")
-public class RolePrivilege {
+public class RolePrivilege implements Serializable {
     private int privilegeId;
     private String privilegeDescription;
     private Integer disabled;
@@ -14,6 +15,7 @@ public class RolePrivilege {
 
     @Id
     @Column(name = "privilegeid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getPrivilegeId() {
         return privilegeId;
     }
@@ -28,9 +30,7 @@ public class RolePrivilege {
         return privilegeDescription;
     }
 
-    public void setPrivilegeDescription(String privilegeDescription) {
-        this.privilegeDescription = privilegeDescription;
-    }
+    public void setPrivilegeDescription(String privilegeDescription) { this.privilegeDescription = privilegeDescription; }
 
     @Basic
     @Column(name = "disabled")
@@ -61,6 +61,10 @@ public class RolePrivilege {
     public void setLastModifiedDateTime(Timestamp lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "roleId")
+    private Role roleId;
 
     @Override
     public boolean equals(Object o) {
